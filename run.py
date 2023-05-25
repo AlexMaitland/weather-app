@@ -23,4 +23,11 @@ def get_weather(city):
     else:
         print("Error occurred while fetching weather data.")
 
-get_weather('Tokyo')
+def main():
+
+    print('Welcome to The Weather App!\n')
+    city = input("Please enter the city you require the weather for: ")
+
+    get_weather(city)
+
+main()
