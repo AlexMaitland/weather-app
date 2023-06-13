@@ -60,13 +60,13 @@ def main():
 
     print('Welcome to Weather365!\n')
     
-    city = input("Enter the city name: ")
+    city = input("Enter the city name: \n")
 
     while not validate_location(city):
         print("Invalid city. Please enter a valid city name.")
         city = input("Enter the city name: ")
 
-    choice = input("Enter 'current' for current weather or 'forecast' for the next five days: ")
+    choice = input("Enter 'current' for current weather or 'forecast' for the next five days: \n")
 
     while choice.lower() not in ['current', 'forecast']:
         print("Invalid choice. Please enter 'current' or 'forecast'.")
