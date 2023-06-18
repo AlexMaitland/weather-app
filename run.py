@@ -1,12 +1,14 @@
 import requests
 from config import API_KEY
 
-api_key = API_KEY
+API = API_KEY
 
 
 def validate_location(city):
-
-    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}'
+    """
+    Checks whether the city input is valid.
+    """
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API}'
 
     response = requests.get(url)
 
@@ -17,8 +19,12 @@ def validate_location(city):
 
 
 def get_weather(city):
-
-    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}'
+    """
+    Gets the requested current weather in the city
+    which the user input and displays the temperature
+    and description.
+    """
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API}'
 
     response = requests.get(url)
     data = response.json()
@@ -30,14 +36,19 @@ def get_weather(city):
         
         print(f"Current weather in {city}:")
         print(f"Temperature: {temperature:.2f}°C")
-        print(f"Description: {description}")
-        
+        print(f"Description: {description}")  
     else:
         print("Error occurred while fetching weather data.")
 
 
 def get_forecast(city):
-    url = f'http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}'
+    """
+    Gets the requested 5 day forecast for the city
+    which the user input and displays the temperature
+    and description.
+    """
+
+    url = f'http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={API}'
 
     response = requests.get(url)
     data = response.json()
@@ -48,11 +59,10 @@ def get_forecast(city):
         for forecast in data['list']:
             forecast_date = forecast['dt_txt']
             if forecast_date.endswith('12:00:00'):
-                temperature_kelvin = forecast['main']['temp']
-                temperature_celsius = temperature_kelvin - 273.15
+                temperature = data['main']['temp'] - 273.15
                 description = forecast['weather'][0]['description']
                 print(f"Date{forecast_date}")
-                print(f"Temperature: {temperature_celsius:.2f}°C") 
+                print(f"Temperature: {temperature:.2f}°C")
                 print(f"Description: {description}")
     else:
         print("Error occurred while fetching weather forecast data.")    
@@ -60,6 +70,9 @@ def get_forecast(city):
 
 def main():
 
+    """
+    Main function
+    """
     print('Welcome to Weather365!\n')
     
     while True:
@@ -68,20 +81,20 @@ def main():
 
         while not validate_location(city):
             print("Invalid city. Please enter a valid city name.")
-            city = input("Enter the city name: ")
+            city = input("Enter the city name: \n")
         
         choice = input("Enter 'current' for current weather or 'forecast' for the next five days: \n")
 
         while choice.lower() not in ['current', 'forecast']:
             print("Invalid choice. Please enter 'current' or 'forecast'.")
-            choice = input("Enter 'current' for current weather or 'forecast' for the next five days: ")
+            choice = input("Enter 'current' for current weather or 'forecast' for the next five days: \n")
 
         if choice.lower() == 'current':
             get_weather(city)
         elif choice.lower() == 'forecast':
             get_forecast(city)
         
-        response = input("Check the weather again? (yes/no): ")
+        response = input("Check the weather again? (yes/no): \n")
         if response.lower() != 'yes':
             print("Goodbye and thank you! Come back soon.")
             break
