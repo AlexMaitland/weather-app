@@ -61,7 +61,7 @@ def get_forecast(city):
             if forecast_date.endswith('12:00:00'):
                 temperature = data['main']['temp'] - 273.15
                 description = forecast['weather'][0]['description']
-                print(f"Date{forecast_date}")
+                print(f"Date: {forecast_date}")
                 print(f"Temperature: {temperature:.2f}°C")
                 print(f"Description: {description}")
     else:
