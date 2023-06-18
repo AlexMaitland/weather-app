@@ -1,31 +1,37 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Weather365
 
-Welcome AlexMaitland,
+Weather365 is an application designed to take input from users searching for either the current weather or a 5 day forecast in a specific city. 
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+## Functionality of Weather365
 
-## Reminders
+* The user is asked which city they would like the forecast for.![Screenshot by Snip My at 18 Jun 2023 at 20:23:12](https://github.com/AlexMaitland/weather-app/assets/122832821/02fe9eee-78fc-4276-80f0-dc44298ade3b)
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+* They are then presented with the option to either receive the current or 5-day forecast.
+ <img width="953" alt="city-entered" src="https://github.com/AlexMaitland/weather-app/assets/122832821/7aa81ac7-fcd7-401b-a210-b659c3c250ad">
 
-## Creating the Heroku app
+* The application then uses the API key to retrieve information from openweathermap.org.
+* Once the information is provided the user may choose to search for the weather in a different location or not. If they do the application will ask for the same input from the user.<img width="953" alt="again" src="https://github.com/AlexMaitland/weather-app/assets/122832821/3e861f39-bd09-4410-bca7-2577d8bbfc04">
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+* Once the user is happy and they do not wish to continue Weather365 will bid them farewell.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+## Testing
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+Using the PEP8 installed into the GitHub repository I was able to check that the code was formatted in an acceptable manner. There remains a few remianing highlighted errors which are down to the lines being longer than the recommended 79 characters. I worked to keep these down as much as possible, however, struggled with some inputs as I prioritised the users experience. 
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+It also highlighted the need for spaces beneath the functions which were easily fixed & the need for the API to be capitalised in order to make it clear that this data was not to be changed. 
 
-Connect your GitHub repository and deploy as normal.
+I struggled to find an online linter which was able to pass my code through as I inported the requests module needed to access the openweathermap.org website. Also, as my API is kept in a seperate file in order to keep it secure this was also a problem I faced. 
 
-## Constraints
+## Deployment
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+The GitHub repository was linked to Heroku where the application was deployed using the following steps.
 
------
-Happy coding!
+1. Create 'New App'
+2. Choose name 'Weather365' & Region 'Europe'
+3. Go to 'Settings' - Config Vars for the API and the PORT were created
+4. Still in 'Settings' - Python & NodeJS buildpacks were added
+5. Next, go to 'Deploy' where the GitHub repository was linked to the Heroku account & permissions granted. Here we also enabled 'Automatic Deploys' was enabled so that any future pushes to the repository would automatically updatethe Heroku program.
+
+## Credits
+
+The only credit required is for [Open Weather](https://openweathermap.org/) which allowed the creation of an API key so that requests for information can be made by the user & real-time information would be sent back.
