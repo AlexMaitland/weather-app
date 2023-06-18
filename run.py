@@ -51,7 +51,9 @@ def get_forecast(city):
                 temperature_kelvin = forecast['main']['temp']
                 temperature_celsius = temperature_kelvin - 273.15
                 description = forecast['weather'][0]['description']
-                print(f"{forecast_date} - Temperature: {temperature_celsius:.2f}°C, Description: {description}")
+                print(f"Date{forecast_date}")
+                print(f"Temperature: {temperature_celsius:.2f}°C") 
+                print(f"Description: {description}")
     else:
         print("Error occurred while fetching weather forecast data.")    
 
@@ -60,22 +62,29 @@ def main():
 
     print('Welcome to Weather365!\n')
     
-    city = input("Enter the city name: \n")
+    while True:
 
-    while not validate_location(city):
-        print("Invalid city. Please enter a valid city name.")
-        city = input("Enter the city name: ")
+        city = input("Enter the city name: \n")
 
-    choice = input("Enter 'current' for current weather or 'forecast' for the next five days: \n")
+        while not validate_location(city):
+            print("Invalid city. Please enter a valid city name.")
+            city = input("Enter the city name: ")
+        
+        choice = input("Enter 'current' for current weather or 'forecast' for the next five days: \n")
 
-    while choice.lower() not in ['current', 'forecast']:
-        print("Invalid choice. Please enter 'current' or 'forecast'.")
-        choice = input("Enter 'current' for current weather or 'forecast' for the next five days: ")
+        while choice.lower() not in ['current', 'forecast']:
+            print("Invalid choice. Please enter 'current' or 'forecast'.")
+            choice = input("Enter 'current' for current weather or 'forecast' for the next five days: ")
 
-    if choice.lower() == 'current':
-        get_weather(city)
-    elif choice.lower() == 'forecast':
-        get_forecast(city)
+        if choice.lower() == 'current':
+            get_weather(city)
+        elif choice.lower() == 'forecast':
+            get_forecast(city)
+        
+        response = input("Check the weather again? (yes/no): ")
+        if response.lower() != 'yes':
+            print("Goodbye and thank you! Come back soon.")
+            break
 
 
 main()
